@@ -4,6 +4,9 @@ import MinimalistTemplate from './templates/MinimalistTemplate';
 import ModernTemplate from './templates/ModernTemplate';
 import CreativeTemplate from './templates/CreativeTemplate';
 import ProfessionalTemplate from './templates/ProfessionalTemplate';
+import AcademicTemplate from './templates/AcademicTemplate';
+import TechnicalTemplate from './templates/TechnicalTemplate';
+import ExecutiveTemplate from './templates/ExecutiveTemplate';
 
 interface ResumePreviewProps {
   resume: Resume;
@@ -20,6 +23,12 @@ const ResumePreview = ({ resume }: ResumePreviewProps) => {
         return <CreativeTemplate resume={resume} />;
       case 'professional':
         return <ProfessionalTemplate resume={resume} />;
+      case 'academic':
+        return <AcademicTemplate resume={resume} />;
+      case 'technical':
+        return <TechnicalTemplate resume={resume} />;
+      case 'executive':
+        return <ExecutiveTemplate resume={resume} />;
       default:
         return <ModernTemplate resume={resume} />;
     }
