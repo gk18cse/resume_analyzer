@@ -57,7 +57,7 @@ export interface Certification {
   link: string;
 }
 
-export type TemplateType = 'minimalist' | 'modern' | 'creative' | 'professional';
+export type TemplateType = 'minimalist' | 'modern' | 'creative' | 'professional' | 'academic' | 'technical' | 'executive';
 
 export interface Resume {
   id: string;
