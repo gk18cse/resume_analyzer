@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
 import EditorPage from "./pages/EditorPage";
+import ATSCheckerPage from "./pages/ATSCheckerPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/editor/:id" element={<EditorPage />} />
+              <Route path="/ats-checker" element={<ATSCheckerPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

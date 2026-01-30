@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, Sparkles, Download, Layout, ArrowRight, Check } from 'lucide-react';
+import { FileText, Sparkles, Download, Layout, ArrowRight, Check, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
 
@@ -52,6 +52,12 @@ const LandingPage = () => {
             </Link>
             
             <div className="flex items-center gap-4">
+              <Link to="/ats-checker">
+                <Button variant="ghost" className="gap-2">
+                  <FileCheck className="w-4 h-4" />
+                  ATS Checker
+                </Button>
+              </Link>
               {isAuthenticated ? (
                 <Link to="/dashboard">
                   <Button>Go to Dashboard</Button>
@@ -194,6 +200,73 @@ const LandingPage = () => {
                 <p className="text-center mt-3 font-medium">{template.name}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* ATS Checker Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              <div className="flex-1 text-center lg:text-left">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent mb-4">
+                  New Feature
+                </span>
+                <h2 className="text-3xl font-bold mb-4">ATS Resume Checker</h2>
+                <p className="text-muted-foreground mb-6">
+                  Upload any resume and get instant feedback on ATS compatibility. 
+                  Our analyzer checks 7 key factors and provides actionable suggestions 
+                  to help you beat the bots.
+                </p>
+                <ul className="space-y-2 mb-6 text-sm">
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <Check className="w-4 h-4 text-accent" />
+                    <span>PDF upload with text extraction</span>
+                  </li>
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <Check className="w-4 h-4 text-accent" />
+                    <span>Job description keyword matching</span>
+                  </li>
+                  <li className="flex items-center gap-2 justify-center lg:justify-start">
+                    <Check className="w-4 h-4 text-accent" />
+                    <span>ATS-optimized resume export</span>
+                  </li>
+                </ul>
+                <Link to="/ats-checker">
+                  <Button size="lg" variant="outline" className="gap-2">
+                    <FileCheck className="w-4 h-4" />
+                    Try ATS Checker
+                  </Button>
+                </Link>
+              </div>
+              <div className="flex-1 w-full max-w-sm">
+                <div className="relative p-6 rounded-2xl bg-card shadow-elevated border">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center text-white font-bold text-xl">
+                      87
+                    </div>
+                    <div>
+                      <p className="font-semibold">ATS Score</p>
+                      <p className="text-sm text-muted-foreground">Good - Minor improvements needed</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span>Contact Info</span>
+                      <span className="text-green-500 font-medium">15/15</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span>Experience</span>
+                      <span className="text-green-500 font-medium">22/25</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span>Keywords</span>
+                      <span className="text-yellow-500 font-medium">7/10</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
