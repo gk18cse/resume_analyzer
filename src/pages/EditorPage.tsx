@@ -13,6 +13,7 @@ import EditorForm from '@/components/editor/EditorForm';
 import ResumePreview from '@/components/editor/ResumePreview';
 import TemplateSelector from '@/components/editor/TemplateSelector';
 import ProgressIndicator from '@/components/editor/ProgressIndicator';
+import ATSScoreAnalyzer from '@/components/editor/ATSScoreAnalyzer';
 
 const EditorPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -177,9 +178,9 @@ const EditorPage = () => {
 
       {/* Editor Layout */}
       <div className="container mx-auto px-4 py-6">
-        <div className="grid lg:grid-cols-2 gap-6 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 items-start">
           {/* Form Section */}
-          <div className="lg:sticky lg:top-[180px] lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto">
+          <div className="lg:col-span-5 lg:sticky lg:top-[180px] lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto">
             <EditorForm
               resume={currentResume}
               onUpdate={handleResumeUpdate}
@@ -187,18 +188,23 @@ const EditorPage = () => {
           </div>
 
           {/* Preview Section */}
-          <div className="lg:sticky lg:top-[180px]">
+          <div className="lg:col-span-4 lg:sticky lg:top-[180px]">
             <div className="bg-card rounded-xl shadow-card overflow-hidden">
               <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
                 <FileText className="w-4 h-4 text-muted-foreground" />
                 <span className="text-sm font-medium">Live Preview</span>
               </div>
               <div className="p-4 overflow-auto max-h-[calc(100vh-280px)]">
-                <div className="transform origin-top scale-[0.65] sm:scale-75 lg:scale-[0.6] xl:scale-75">
+                <div className="transform origin-top scale-[0.5] xl:scale-[0.55]">
                   <ResumePreview resume={currentResume} />
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* ATS Score Analyzer */}
+          <div className="lg:col-span-3 lg:sticky lg:top-[180px] lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto">
+            <ATSScoreAnalyzer resume={currentResume} />
           </div>
         </div>
       </div>
