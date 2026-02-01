@@ -4,6 +4,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* A4 Print Optimization for Resume */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  #resume-preview,
+  #ats-optimized-resume {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* A4 Resume Container Styles */
+.a4-resume {
+  width: 210mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  overflow: hidden;
+  background: white;
+  box-sizing: border-box;
+}
+
+.a4-resume-content {
+  font-size: 10pt;
+  line-height: 1.3;
+}
+
+.a4-resume-content h1 {
+  font-size: 18pt;
+  margin-bottom: 4pt;
+}
+
+.a4-resume-content h2 {
+  font-size: 12pt;
+  margin-bottom: 4pt;
+  margin-top: 8pt;
+}
+
+.a4-resume-content h3 {
+  font-size: 11pt;
+  margin-bottom: 2pt;
+}
+
+.a4-resume-content p,
+.a4-resume-content li {
+  font-size: 10pt;
+  line-height: 1.35;
+}
+
+.a4-resume-content section {
+  margin-bottom: 6pt;
+}
+
 @layer base {
   :root {
     --background: 210 20% 98%;
