@@ -13,7 +13,7 @@ import EditorForm from '@/components/editor/EditorForm';
 import ResumePreview from '@/components/editor/ResumePreview';
 import TemplateSelector from '@/components/editor/TemplateSelector';
 import ProgressIndicator from '@/components/editor/ProgressIndicator';
-import ATSScoreAnalyzer from '@/components/editor/ATSScoreAnalyzer';
+import EditorAISidebar from '@/components/editor/EditorAISidebar';
 
 const EditorPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -202,9 +202,35 @@ const EditorPage = () => {
             </div>
           </div>
 
-          {/* ATS Score Analyzer */}
+          {/* ATS Score Analyzer & AI Tools */}
           <div className="lg:col-span-3 lg:sticky lg:top-[180px] lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto">
-            <ATSScoreAnalyzer resume={currentResume} />
+            <EditorAISidebar
+              resume={currentResume}
+              onApplySuggestion={(section, value) => {
+                if (section.toLowerCase().includes('summary')) {
+                  handleResumeUpdate({
+                    ...currentResume,
+                    personalInfo: { ...currentResume.personalInfo, summary: value },
+                  });
+                }
+              }}
+              onApplyBullets={(bullets, experienceId) => {
+                handleResumeUpdate({
+                  ...currentResume,
+                  experience: currentResume.experience.map(exp =>
+                    exp.id === experienceId
+                      ? { ...exp, highlights: [...exp.highlights, ...bullets] }
+                      : exp
+                  ),
+                });
+              }}
+              onApplySummary={(summary) => {
+                handleResumeUpdate({
+                  ...currentResume,
+                  personalInfo: { ...currentResume.personalInfo, summary },
+                });
+              }}
+            />
           </div>
         </div>
       </div>
