@@ -165,6 +165,81 @@
   display: none !important;
 }
 
+/* ===== Classic Template Overrides =====
+   The Classic template uses precise inline styles matching the uploaded PDF.
+   Override the aggressive .a4-resume-content compression to preserve its layout. */
+.a4-resume-content .classic-resume {
+  font-size: 10.5pt !important;
+  line-height: 1.35 !important;
+}
+
+.a4-resume-content .classic-resume h1 {
+  font-size: 22pt !important;
+  line-height: 1.15 !important;
+  margin-bottom: 1pt !important;
+}
+
+.a4-resume-content .classic-resume h2 {
+  font-size: 12pt !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 2pt !important;
+}
+
+.a4-resume-content .classic-resume p {
+  font-size: 10pt !important;
+  line-height: 1.4 !important;
+}
+
+.a4-resume-content .classic-resume li {
+  font-size: 10pt !important;
+  line-height: 1.35 !important;
+  margin-bottom: 1.5pt !important;
+}
+
+/* Allow ALL bullet points in Classic template (PDF shows 5 per section) */
+.a4-resume-content .classic-resume ul li:nth-child(n+4) {
+  display: list-item !important;
+}
+
+/* Allow ALL section entries in Classic template */
+.a4-resume-content .classic-resume section > div:nth-child(n+5) {
+  display: block !important;
+}
+
+.a4-resume-content .classic-resume ul {
+  margin-top: 3pt !important;
+  margin-bottom: 0 !important;
+  padding-left: 16pt !important;
+}
+
+.a4-resume-content .classic-resume section {
+  margin-bottom: 6pt !important;
+  padding: 0 !important;
+}
+
+.a4-resume-content .classic-resume .text-xs,
+.a4-resume-content .classic-resume .text-sm {
+  font-size: 9.5pt !important;
+}
+
+.a4-resume-content .classic-resume .text-base {
+  font-size: 10pt !important;
+}
+
+.a4-resume-content .classic-resume .text-lg {
+  font-size: 10.5pt !important;
+}
+
+.a4-resume-content .classic-resume .text-xl,
+.a4-resume-content .classic-resume .text-2xl {
+  font-size: 12pt !important;
+}
+
+.a4-resume-content .classic-resume .text-3xl {
+  font-size: 22pt !important;
+}
+
 @layer base {
   :root {
     --background: 210 20% 98%;

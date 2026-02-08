@@ -26,22 +26,22 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
       className="classic-resume"
       style={{
         fontFamily: "'Times New Roman', 'Georgia', 'Garamond', serif",
-        fontSize: '10pt',
-        lineHeight: '1.3',
+        fontSize: '10.5pt',
+        lineHeight: '1.35',
         color: '#000',
-        padding: '12mm 14mm 10mm 14mm',
+        padding: '14mm 20mm 12mm 20mm',
         boxSizing: 'border-box',
       }}
     >
       {/* Header - Centered Name */}
-      <div style={{ textAlign: 'center', marginBottom: '2pt' }}>
+      <div style={{ textAlign: 'center', marginBottom: '1pt' }}>
         <h1
           style={{
-            fontSize: '20pt',
+            fontSize: '22pt',
             fontWeight: 700,
-            letterSpacing: '1px',
+            letterSpacing: '1.5px',
             margin: 0,
-            lineHeight: 1.2,
+            lineHeight: 1.15,
             color: '#000',
           }}
         >
@@ -49,21 +49,31 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
         </h1>
       </div>
 
-      {/* Contact Info - Centered, separated by · */}
+      {/* Contact Info - Centered, separated by · with underlines on links */}
       {contactParts.length > 0 && (
         <div
           style={{
             textAlign: 'center',
-            fontSize: '9pt',
-            color: '#333',
-            marginBottom: '8pt',
-            lineHeight: 1.4,
+            fontSize: '9.5pt',
+            color: '#000',
+            marginBottom: '6pt',
+            lineHeight: 1.5,
           }}
         >
           {contactParts.map((part, idx) => (
             <span key={idx}>
-              {idx > 0 && <span style={{ margin: '0 4pt' }}>·</span>}
-              <span style={{ textDecoration: part.includes('@') || part.includes('.com') || part.includes('linkedin') || part.includes('github') ? 'underline' : 'none' }}>
+              {idx > 0 && <span style={{ margin: '0 5pt' }}>·</span>}
+              <span
+                style={{
+                  textDecoration:
+                    part.includes('@') ||
+                    part.includes('.com') ||
+                    part.includes('linkedin') ||
+                    part.includes('github')
+                      ? 'underline'
+                      : 'none',
+                }}
+              >
                 {part}
               </span>
             </span>
@@ -77,9 +87,9 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
           <SectionHeader title="SUMMARY" />
           <p
             style={{
-              fontSize: '9.5pt',
-              lineHeight: 1.35,
-              color: '#222',
+              fontSize: '10pt',
+              lineHeight: 1.4,
+              color: '#000',
               margin: 0,
               textAlign: 'justify',
             }}
@@ -97,65 +107,62 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
             <div key={edu.id} style={{ marginBottom: '3pt' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
-                  <span style={{ fontWeight: 700, fontSize: '9.5pt' }}>
+                  <span style={{ fontWeight: 700, fontSize: '10.5pt' }}>
                     {edu.institution}
                   </span>
-                  <br />
-                  <span style={{ fontStyle: 'italic', fontSize: '9pt', color: '#333' }}>
-                    {edu.degree}{edu.field ? ` in ${edu.field}` : ''}
-                  </span>
                 </div>
-                <div style={{ textAlign: 'right', fontSize: '9pt', whiteSpace: 'nowrap', color: '#333', fontStyle: 'italic' }}>
+                <span style={{ textAlign: 'right', fontSize: '10pt', whiteSpace: 'nowrap', color: '#000', fontStyle: 'italic' }}>
                   {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
-                  {edu.gpa && (
-                    <>
-                      <br />
-                      <span style={{ fontStyle: 'italic' }}>CGPA: {edu.gpa}</span>
-                    </>
-                  )}
-                </div>
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <span style={{ fontStyle: 'italic', fontSize: '10pt', color: '#000' }}>
+                  {edu.degree}{edu.field ? ` in ${edu.field}` : ''}
+                </span>
+                {edu.gpa && (
+                  <span style={{ fontSize: '10pt', fontStyle: 'italic', color: '#000', whiteSpace: 'nowrap' }}>
+                    CGPA: {edu.gpa}
+                  </span>
+                )}
               </div>
             </div>
           ))}
         </section>
       )}
 
-      {/* EXPERIENCE / INTERNSHIP */}
+      {/* INTERNSHIP/TRAINING */}
       {experience.length > 0 && (
         <section style={{ marginBottom: '6pt' }}>
           <SectionHeader title="INTERNSHIP/TRAINING" />
           {experience.map((exp) => (
-            <div key={exp.id} style={{ marginBottom: '5pt' }}>
+            <div key={exp.id} style={{ marginBottom: '6pt' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div>
-                  <span style={{ fontWeight: 700, fontSize: '9.5pt' }}>
-                    {exp.position}
-                  </span>
-                  <br />
-                  <span style={{ fontStyle: 'italic', fontSize: '9pt', color: '#333' }}>
-                    {exp.company}{exp.location ? `, ${exp.location}` : ''}
-                  </span>
-                </div>
-                <span style={{ fontSize: '9pt', whiteSpace: 'nowrap', color: '#333', fontStyle: 'italic' }}>
+                <span style={{ fontWeight: 700, fontSize: '10.5pt' }}>
+                  {exp.position}
+                </span>
+                <span style={{ fontSize: '10pt', whiteSpace: 'nowrap', color: '#000', fontStyle: 'italic' }}>
                   {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
                 </span>
+              </div>
+              <div style={{ fontSize: '10pt', fontStyle: 'italic', color: '#000' }}>
+                {exp.company}{exp.location ? `, ${exp.location}` : ''}
               </div>
               {exp.highlights.filter(h => h).length > 0 && (
                 <ul
                   style={{
-                    margin: '2pt 0 0 0',
-                    paddingLeft: '14pt',
+                    margin: '3pt 0 0 0',
+                    paddingLeft: '16pt',
                     listStyleType: 'disc',
                   }}
                 >
-                  {exp.highlights.filter(h => h).slice(0, 5).map((highlight, idx) => (
+                  {exp.highlights.filter(h => h).map((highlight, idx) => (
                     <li
                       key={idx}
                       style={{
-                        fontSize: '9pt',
-                        lineHeight: 1.3,
-                        color: '#222',
-                        marginBottom: '1pt',
+                        fontSize: '10pt',
+                        lineHeight: 1.35,
+                        color: '#000',
+                        marginBottom: '1.5pt',
                       }}
                     >
                       {highlight}
@@ -164,7 +171,7 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
                 </ul>
               )}
               {!exp.highlights.filter(h => h).length && exp.description && (
-                <p style={{ fontSize: '9pt', color: '#222', margin: '2pt 0 0 0', lineHeight: 1.3 }}>
+                <p style={{ fontSize: '10pt', color: '#000', margin: '3pt 0 0 0', lineHeight: 1.35 }}>
                   {exp.description}
                 </p>
               )}
@@ -178,38 +185,38 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
         <section style={{ marginBottom: '6pt' }}>
           <SectionHeader title="PROJECTS" />
           {projects.map((proj) => (
-            <div key={proj.id} style={{ marginBottom: '5pt' }}>
+            <div key={proj.id} style={{ marginBottom: '6pt' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
-                  <span style={{ fontWeight: 700, fontSize: '9.5pt' }}>
+                  <span style={{ fontWeight: 700, fontSize: '10.5pt' }}>
                     {proj.name}
                   </span>
                   {proj.technologies.length > 0 && (
-                    <span style={{ fontSize: '9pt', color: '#333' }}>
+                    <span style={{ fontSize: '10pt', color: '#000' }}>
                       {' '}| <span style={{ fontStyle: 'italic' }}>{proj.technologies.join(', ')}</span>
                     </span>
                   )}
                 </div>
-                <span style={{ fontSize: '9pt', whiteSpace: 'nowrap', color: '#333', fontStyle: 'italic' }}>
+                <span style={{ fontSize: '10pt', whiteSpace: 'nowrap', color: '#000', fontStyle: 'italic' }}>
                   {formatDate(proj.startDate)} - {formatDate(proj.endDate)}
                 </span>
               </div>
               {proj.description && (
                 <ul
                   style={{
-                    margin: '2pt 0 0 0',
-                    paddingLeft: '14pt',
+                    margin: '3pt 0 0 0',
+                    paddingLeft: '16pt',
                     listStyleType: 'disc',
                   }}
                 >
-                  {proj.description.split('. ').filter(s => s.trim()).slice(0, 5).map((sentence, idx) => (
+                  {proj.description.split('. ').filter(s => s.trim()).map((sentence, idx) => (
                     <li
                       key={idx}
                       style={{
-                        fontSize: '9pt',
-                        lineHeight: 1.3,
-                        color: '#222',
-                        marginBottom: '1pt',
+                        fontSize: '10pt',
+                        lineHeight: 1.35,
+                        color: '#000',
+                        marginBottom: '1.5pt',
                       }}
                     >
                       {sentence.endsWith('.') ? sentence : `${sentence}.`}
@@ -237,12 +244,12 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
           {certifications.map((cert) => (
             <div key={cert.id} style={{ marginBottom: '2pt', display: 'flex', justifyContent: 'space-between' }}>
               <div>
-                <span style={{ fontWeight: 700, fontSize: '9.5pt' }}>{cert.name}</span>
+                <span style={{ fontWeight: 700, fontSize: '10.5pt' }}>{cert.name}</span>
                 {cert.issuer && (
-                  <span style={{ fontSize: '9pt', color: '#333' }}> — {cert.issuer}</span>
+                  <span style={{ fontSize: '10pt', color: '#000' }}> — {cert.issuer}</span>
                 )}
               </div>
-              <span style={{ fontSize: '9pt', color: '#333', fontStyle: 'italic' }}>
+              <span style={{ fontSize: '10pt', color: '#000', fontStyle: 'italic' }}>
                 {formatDate(cert.date)}
               </span>
             </div>
@@ -253,17 +260,17 @@ const ClassicTemplate = ({ resume }: TemplateProps) => {
   );
 };
 
-/* Section Header with horizontal rule */
+/* Section Header with horizontal rule - matches PDF exactly */
 const SectionHeader = ({ title }: { title: string }) => (
   <div style={{ marginBottom: '4pt' }}>
     <h2
       style={{
-        fontSize: '11pt',
+        fontSize: '12pt',
         fontWeight: 700,
         letterSpacing: '0.5px',
         margin: 0,
         paddingBottom: '2pt',
-        borderBottom: '1.5px solid #000',
+        borderBottom: '1px solid #000',
         color: '#000',
       }}
     >
@@ -285,7 +292,7 @@ const SkillsGroup = ({ skills }: { skills: { id: string; name: string; level: st
   return (
     <div>
       {Object.entries(categories).map(([label, names]) => (
-        <p key={label} style={{ fontSize: '9.5pt', margin: '0 0 1pt 0', lineHeight: 1.35 }}>
+        <p key={label} style={{ fontSize: '10pt', margin: '0 0 2pt 0', lineHeight: 1.4 }}>
           <span style={{ fontWeight: 700 }}>{label}:</span>{' '}
           {names.join(', ')}
         </p>
