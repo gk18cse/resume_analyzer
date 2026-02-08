@@ -15,6 +15,7 @@ const templates: { type: TemplateType; name: string; color: string; ats?: boolea
   { type: 'academic', name: 'Academic', color: 'bg-[#1e3a5f]', ats: true },
   { type: 'technical', name: 'Technical', color: 'bg-[#0d9488]', ats: true },
   { type: 'executive', name: 'Executive', color: 'bg-[#7c2d4b]', ats: true },
+  { type: 'classic', name: 'Classic', color: 'bg-[#1a1a1a]', ats: true },
 ];
 
 const TemplateSelector = ({ selectedTemplate, onTemplateChange }: TemplateSelectorProps) => {
