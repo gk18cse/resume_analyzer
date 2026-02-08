@@ -64,8 +64,7 @@ const ATSCheckerPage = () => {
     if (!parsedResume) return;
     
     try {
-      const html2canvas = (await import('html2canvas')).default;
-      const { jsPDF } = await import('jspdf');
+      const html2pdf = (await import('html2pdf.js')).default;
       const element = document.getElementById('ats-optimized-resume');
       
       if (!element) {
@@ -76,31 +75,16 @@ const ATSCheckerPage = () => {
         });
         return;
       }
-
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-      });
-
-      const A4_WIDTH_MM = 210;
-      const A4_HEIGHT_MM = 297;
-      const imgWidth = A4_WIDTH_MM;
-      const imgHeight = (canvas.height * A4_WIDTH_MM) / canvas.width;
-
-      let finalWidth = imgWidth;
-      let finalHeight = imgHeight;
-      if (imgHeight > A4_HEIGHT_MM) {
-        const scaleFactor = A4_HEIGHT_MM / imgHeight;
-        finalWidth = imgWidth * scaleFactor;
-        finalHeight = A4_HEIGHT_MM;
-      }
-
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
-      const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-      const xOffset = (A4_WIDTH_MM - finalWidth) / 2;
-      pdf.addImage(imgData, 'JPEG', xOffset, 0, finalWidth, finalHeight);
-      pdf.save(`ATS-Optimized-Resume-${new Date().toISOString().split('T')[0]}.pdf`);
+      
+      const opt = {
+        margin: [0.5, 0.5] as [number, number],
+        filename: `ATS-Optimized-Resume-${new Date().toISOString().split('T')[0]}.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in' as const, format: 'letter', orientation: 'portrait' as const },
+      };
+      
+      await html2pdf().set(opt).from(element).save();
       
       toast({
         title: 'PDF Downloaded',
